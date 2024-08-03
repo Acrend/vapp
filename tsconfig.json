@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",                             // Spécifie la version cible de JavaScript
+    "module": "esnext",                          // Utilise le système de module ES6+
+    "lib": ["dom", "dom.iterable", "esnext"],    // Librairies à inclure dans la compilation
+    "allowJs": true,                             // Autorise les fichiers JavaScript
+    "skipLibCheck": true,                        // Ignore les vérifications de types pour les déclarations dans les fichiers .d.ts
+    "esModuleInterop": true,                     // Permet l'interopérabilité par défaut pour les modules ES6
+    "allowSyntheticDefaultImports": true,        // Permet les imports par défaut pour les modules sans export par défaut
+    "strict": true,                              // Active tous les modes stricts
+    "forceConsistentCasingInFileNames": true,    // Force la cohérence des majuscules/minuscules dans les noms de fichiers
+    "moduleResolution": "node",                  // Mode de résolution de module
+    "resolveJsonModule": true,                   // Permet l'importation de fichiers JSON
+    "isolatedModules": true,                     // Garantit que chaque fichier peut être transpilé séparément
+    "noEmit": true,                              // Ne produit pas de fichiers de sortie
+    "jsx": "react-jsx"                           // Spécifie le mode JSX pour React
+  },
+  "include": [
+    "src/**/*"                                   // Spécifie les fichiers à inclure dans la compilation
+  ]
+}
