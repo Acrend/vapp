@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import TextBoxSearchSub from './components/text_box_search_sub/text_box_search_sub';
+import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 
 function App() {
   const [animal, setAnimal] = useState('');
   const [index, setIndex] = useState(0);
   const [idList, setIdList] = useState<string[]>([]);
+  const [inputData, setInputData] = useState('');
 
   const fetchAnimal = async () => {
     try {
@@ -20,7 +22,7 @@ function App() {
     }
   };
 
-  const fetchInfo = async (inputData: string) => {
+  const fetchInfo = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/get-info/', {
         method: 'POST',
@@ -33,13 +35,12 @@ function App() {
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send data');
       }
-      setIdList(data.sub_id_list || []);  // Modification ici pour utiliser "sub_id_list"
+      setIdList(data.sub_id_list || []);
     } catch (error) {
       handleError(error, 'Error sending data');
     }
   };
-  
-  
+
   const handleError = (error: any, defaultMessage: string): void => {
     let errorMessage = defaultMessage;
     if (error instanceof Error) {
@@ -55,8 +56,9 @@ function App() {
 
   return (
     <div>
-      <TextBoxSearchSub onSearchSubmit={fetchInfo} onInfoSubmit={fetchInfo} />
-      <button onClick={fetchAnimal}>Get Next Animal</button>
+      <TextBoxSearchSub onInputChange={setInputData} />
+      <FetchButton onClick={fetchInfo} label="Fetch Info" />
+      <FetchButton onClick={fetchAnimal} label="Get Next Animal" />
       <p>Animal: {animal}</p>
       <p>Request Count: {index}</p>
       <p>ID List: {JSON.stringify(idList)}</p>
