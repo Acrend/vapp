@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import './App.css'; // Importez le fichier CSS global
+import './App.css'; // Assurez-vous que le chemin est correct
 import TextBoxSearchSub from './components/text_box_search_sub/text_box_search_sub';
 import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 import SubContainer from './components/sub_container/sub_container';
 
 function App() {
-  const [animal, setAnimal] = useState('');
-  const [index, setIndex] = useState(0);
+  const [animal, setAnimal] = useState<string>('');
+  const [index, setIndex] = useState<number>(0);
   const [idList, setIdList] = useState<string[]>([]);
-  const [inputData, setInputData] = useState('');
-  const [subResults, setSubResults] = useState<{ score: number; title: string }[]>([]);
-  const [showAnimalSection, setShowAnimalSection] = useState(false);
+  const [inputData, setInputData] = useState<string>('');
+  const [subResults, setSubResults] = useState<Array<{ score: number; title: string }>>([]);
+  const [showAnimalSection, setShowAnimalSection] = useState<boolean>(false);
 
   const fetchAnimal = async () => {
     try {
@@ -40,11 +40,14 @@ function App() {
         throw new Error(data.error || 'Failed to send data');
       }
       setIdList(data.sub_id_list || []);
-      fetchSubDetails(data.sub_id_list.slice(0, 5)); // Fetch details for the first 10 IDs
+      // Effacez les résultats précédents avant de charger de nouveaux détails
+      setSubResults([]); // Vide l'état pour s'assurer que les anciens résultats ne s'affichent plus
+      fetchSubDetails(data.sub_id_list.slice(0, 4)); // Fetch details for the first 4 IDs
     } catch (error) {
       handleError(error, 'Error sending data');
     }
   };
+  
 
   const fetchSubDetails = async (subIds: string[]) => {
     try {
@@ -90,14 +93,12 @@ function App() {
         {showAnimalSection ? 'Hide debugging Section' : 'Show debugging Section'}
       </button>
 
-      {showAnimalSection && (
-        <div className="button-container">
-          <p>This section is only here for debugging purpose, and check if the call API are working properly</p>
-          <FetchButton onClick={fetchAnimal} label="Get Next Animal" />
-          <p>Animal: {animal}</p>
-          <p>Request Count: {index}</p>
-        </div>
-      )}
+      <div className={`button-container ${showAnimalSection ? 'debug-section show' : 'debug-section'}`}>
+        <p>This section is only here for debugging purpose, and check if the call API are working properly</p>
+        <FetchButton onClick={fetchAnimal} label="Get Next Animal" />
+        <p>Animal: {animal}</p>
+        <p>Request Count: {index}</p>
+      </div>
 
       <TextBoxSearchSub onInputChange={setInputData} />
       <FetchButton onClick={fetchInfo} label="Fetch Info" />

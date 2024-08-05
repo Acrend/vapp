@@ -18,3 +18,16 @@
   width: 100%;
   max-width: 600px;
 }
+
+.debug-section {
+  transition: max-height 0.5s ease-in -0.2s, opacity 0.5s ease-in; 
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.debug-section.show {
+  transition: opacity 0.5s ease-out, max-height 0.8s ease-out; 
+  max-height: 1000px; 
+  opacity: 1;
+}

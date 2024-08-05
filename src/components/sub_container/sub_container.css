@@ -1,13 +1,35 @@
-/* sub_container.css */
+:root {
+  --border-radius: 8px;
+  --background-color: #f9f9f9;
+  --transition-duration: 0.3s;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .sub-container {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 8px 0;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
+  transition: opacity var(--transition-duration) ease-in-out;
+}
+
+
+.sub-container p {
+  margin: 4px 0;
+}
+
+/* Animation on component mount */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .sub-container p {
-    margin: 4px 0;
+  to {
+    opacity: 1;
   }
-  
+}
+
+.sub-container.fade-in {
+  animation: fadeIn var(--transition-duration) ease-in-out;
+} */
