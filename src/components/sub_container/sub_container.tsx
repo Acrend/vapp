@@ -4,9 +4,12 @@ import './sub_container.css';
 interface SubContainerProps {
   score: number;
   title: string;
+  sub_at_link:string; 
+  sub_deadline:string;
+  sub_start:string;
 }
 
-const SubContainer: React.FC<SubContainerProps> = ({ score, title }) => {
+const SubContainer: React.FC<SubContainerProps> = ({ score, title, sub_at_link, sub_deadline, sub_start }) => {
   const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
@@ -18,8 +21,11 @@ const SubContainer: React.FC<SubContainerProps> = ({ score, title }) => {
 
   return (
     <div className="sub-container" style={{ opacity }}>
-      <p>Title: {title}</p>
+      <p>Titre: {title}</p>
       <p>Score: {score}</p>
+      <p>Lien aide territoire: {sub_at_link}</p>
+      <p>Ouverture des demandes : {sub_start}</p>
+      <p>Fermeture des demandes : {sub_deadline}</p>
     </div>
   );
 };

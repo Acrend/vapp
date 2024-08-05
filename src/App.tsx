@@ -9,7 +9,7 @@ function App() {
   const [index, setIndex] = useState<number>(0);
   const [idList, setIdList] = useState<string[]>([]);
   const [inputData, setInputData] = useState<string>('');
-  const [subResults, setSubResults] = useState<Array<{ score: number; title: string }>>([]);
+  const [subResults, setSubResults] = useState<Array<{ score: number; title: string; sub_at_link:string; sub_deadline:string; sub_start:string }>>([]);
   const [showAnimalSection, setShowAnimalSection] = useState<boolean>(false);
 
   const fetchAnimal = async () => {
@@ -67,7 +67,7 @@ function App() {
         if (!response.ok) {
           throw new Error(data.error || 'Failed to fetch sub details');
         }
-        setSubResults(prevResults => [...prevResults, { score: data.subvention_score, title: data.sub_title }]);
+        setSubResults(prevResults => [...prevResults, { score: data.subvention_score, title: data.sub_title, sub_at_link: data.sub_at_link, sub_deadline: data.sub_deadline, sub_start: data.sub_start }]);
       }
     } catch (error) {
       handleError(error, 'Error fetching sub details');
@@ -104,7 +104,7 @@ function App() {
       <FetchButton onClick={fetchInfo} label="Fetch Info" />
       <div className="results-container">
         {subResults.map((result, index) => (
-          <SubContainer key={index} score={result.score} title={result.title} />
+          <SubContainer key={index} score={result.score} title={result.title} sub_at_link={result.sub_at_link} sub_deadline={result.sub_deadline} sub_start={result.sub_start} />
         ))}
       </div>
     </div>
