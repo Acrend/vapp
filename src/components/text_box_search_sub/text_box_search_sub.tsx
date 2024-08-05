@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface TextBoxSearchSubProps {
-  onInputChange: (inputData: string) => void;
+  onInputChange: (value: string) => void;
 }
 
-function TextBoxSearchSub({ onInputChange }: TextBoxSearchSubProps) {
-  const [inputData, setInputData] = useState('');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setInputData(value);
-    onInputChange(value);
+const TextBoxSearchSub: React.FC<TextBoxSearchSubProps> = ({ onInputChange }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onInputChange(e.target.value);
   };
 
   return (
-    <input
-      type="text"
-      value={inputData}
-      onChange={handleChange}
-      placeholder="Décrivez votre projet ici..."
-    />
+    <input type="text" onChange={handleChange} placeholder="Enter project description" />
   );
-}
+};
 
 export default TextBoxSearchSub;

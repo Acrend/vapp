@@ -5,12 +5,8 @@ interface FetchButtonProps {
   label: string;
 }
 
-function FetchButton({ onClick, label }: FetchButtonProps) {
-  return (
-    <button onClick={onClick}>
-      {label}
-    </button>
-  );
-}
+const FetchButton: React.FC<FetchButtonProps> = ({ onClick, label }) => {
+  return <button onClick={onClick}>{label}</button>;
+};
 
 export default FetchButton;
