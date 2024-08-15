@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './sub_container.css';
+import './sub_container_dev.css';
 
 interface SubContainerProps {
   score: number;
@@ -12,7 +12,7 @@ interface SubContainerProps {
   type?: string;
 }
 
-const SubContainer: React.FC<SubContainerProps> = ({
+const SubContainerDev: React.FC<SubContainerProps> = ({
   score,
   sub_score_ratio,
   title,
@@ -24,7 +24,6 @@ const SubContainer: React.FC<SubContainerProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Fonction pour obtenir la couleur en fonction du ratio
   const getCircleColor = (sub_score_ratio: number) => {
     const red = Math.min(255, 255 * (1 - sub_score_ratio));
     const green = Math.min(255, 255 * sub_score_ratio);
@@ -37,7 +36,7 @@ const SubContainer: React.FC<SubContainerProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className={`sub-container ${isExpanded ? 'show' : ''}`}>
+    <div className='sub-container-main-frame'>
       <div className="sub-container-header">
         <div className="title-container">
           <h2>{title}</h2>
@@ -48,19 +47,28 @@ const SubContainer: React.FC<SubContainerProps> = ({
           </div>
         </div>
       </div>
-      <div className="details-link" onClick={() => setIsExpanded(!isExpanded)}>
-        {isExpanded ? 'Réduire' : 'Détail'}
-        <span>{isExpanded ? '∧' : '∨'}</span>
+      <div className='button-container'>
+        <div
+          className={`detail-expand-button ${isExpanded ? 'expanded' : ''}`}
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? 'Réduire' : 'Détail'}
+        </div>
+        <div className='add-sub-button'>
+          Ajouter l'aide à mon projet
+        </div>
       </div>
       {isExpanded && (
-        <div className="details">
-          <p>Lien aide territoire: <a href={sub_at_link} target="_blank" rel="noopener noreferrer">{sub_at_link}</a></p>
-          <p>Date d'ouverture : {sub_start}</p>
-          <p>Date de clôture : {sub_deadline}</p>
+        <div className={`sub-container ${isExpanded ? 'show' : ''}`}>
+          <div className="details">
+            <p>Lien aide territoire: <a href={sub_at_link} target="_blank" rel="noopener noreferrer">{sub_at_link}</a></p>
+            <p>Date d'ouverture : {sub_start}</p>
+            <p>Date de clôture : {sub_deadline}</p>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default SubContainer;
+export default SubContainerDev;

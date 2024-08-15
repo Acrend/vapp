@@ -1,35 +1,100 @@
 :root {
-  --border-radius: 8px;
-  --background-color: #f9f9f9;
+  --border-radius: 12px;
+  --background-color: #fff;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   --transition-duration: 0.3s;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --color-main: #333;
+  --color-secondary: #666;
+  --color-link: #00b7c3;
 }
 
+/* Conteneur principal de la carte */
 .sub-container {
-  border: 1px solid #ccc;
-  padding: 16px;
-  margin: 8px 0;
-  border-radius: var(--border-radius);
   background-color: var(--background-color);
+  border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  transition: opacity var(--transition-duration) ease-in-out;
+  padding: 20px;
+  margin: 20px 0;
+  transition: all var(--transition-duration) ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
+/* En-tête de la carte, contenant le titre et le cercle */
+.sub-container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px; /* Espace entre le header et le reste de la carte */
+}
 
+/* Conteneur du titre */
+.title-container {
+  flex-grow: 1;
+  margin-right: 10px; /* Espace entre le titre et le cercle */
+}
+
+/* Titre de la carte */
+.sub-container h2 {
+  margin: 0;
+  color: var(--color-main);
+  text-align: left;
+}
+
+/* Texte général dans la carte */
 .sub-container p {
-  margin: 4px 0;
+  margin: 5px 0;
+  color: var(--color-secondary);
 }
 
-/* Animation on component mount */
-/* @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Conteneur du cercle pour s'assurer qu'il ne se déforme pas */
+.circle-container {
+  flex-shrink: 0;
+  width: 60px; /* Taille fixe pour le cercle */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sub-container.fade-in {
-  animation: fadeIn var(--transition-duration) ease-in-out;
-} */
+/* Cercle pour afficher le pourcentage */
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--circle-color); /* Couleur fixe, sans effet de remplissage */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #fff;
+}
+
+/* Lien pour afficher plus d'informations */
+.details-link {
+  margin-top: 10px;
+  color: var(--color-link);
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.details-link span {
+  margin-left: 5px; /* Espace entre le texte et l'icône */
+}
+
+/* Contenu déroulant caché par défaut */
+.sub-container .details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-duration) ease-in-out;
+}
+
+/* Contenu déroulant visible */
+.sub-container.show .details {
+  max-height: 300px; /* Ajustez la hauteur maximale selon vos besoins */
+}
