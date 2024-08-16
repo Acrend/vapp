@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './App.css'; // Assurez-vous que le chemin est correct
+import './App.css';
 import TextBoxSearchSub from './components/text_box_search_sub/text_box_search_sub';
 import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 import SubContainer from './components/sub_container/sub_container';
 import SubContainerDev from './components/sub_container_dev/sub_container_dev';
-
+import SubventionCardsContainer from './components/SubventionCardsContainer/SubventionCardsContainer';
+import SubventionCard from './components/SubventionCard/SubventionCard';
 
 function LoadingSpinner() {
   return (
@@ -56,7 +57,7 @@ function App() {
       setIdList(data.sub_id_list || []);
       setSubResults([]); // Effacez les résultats précédents avant de charger de nouveaux détails
       setHighScoreCount(0); // Réinitialiser le compteur des scores élevés
-      fetchSubDetails(data.sub_id_list.slice(0, 4)); // Fetch details for the first 50 IDs
+      fetchSubDetails(data.sub_id_list.slice(0, 4)); // Fetch details for the first 4 IDs
     } catch (error) {
       handleError(error, 'Error sending data');
     }
@@ -87,7 +88,7 @@ function App() {
         setSubResults(prevResults => {
           const newResults = [...prevResults, {
             score: data.subvention_score,
-            sub_score_ratio:data.sub_score_ratio,
+            sub_score_ratio: data.sub_score_ratio,
             title: data.sub_title,
             sub_at_link: data.sub_at_link,
             sub_deadline: data.sub_deadline,
@@ -159,24 +160,43 @@ function App() {
           />
         ))}
       </div>
+
       <div className="results-container">
         <SubContainerDev
-        score={0}
-        sub_score_ratio={0.75} // Or any default ratio you'd like to test with
-        title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-        sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
-        sub_deadline="2024-12-08"
-        sub_start="2024-08-08"
+          score={0}
+          sub_score_ratio={0.75} // Or any default ratio you'd like to test with
+          title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
         <SubContainerDev
-        score={0}
-        sub_score_ratio={0.75} // Or any default ratio you'd like to test with
-        title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-        sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
-        sub_deadline="2024-12-08"
-        sub_start="2024-08-08"
+          score={0}
+          sub_score_ratio={0.75} // Or any default ratio you'd like to test with
+          title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
       </div>
+
+      <SubventionCardsContainer>
+        <SubventionCard
+          title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
+          compatibility="70%"
+          provider="Banque des territoires"
+          amount="200 000 €"
+          details="Mes détails"
+        />
+        <SubventionCard
+          title="Protéger et restaurer"
+          compatibility="70%"
+          provider="Banque des territoires"
+          amount="200 000 €"
+          details="Mes détails"
+        />
+      </SubventionCardsContainer>
+
       {!isLoading && (
         <div className="summary">
           <p>{highScoreCount} aides ont un score supérieur à 10.</p>

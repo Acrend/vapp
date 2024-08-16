@@ -1,0 +1,65 @@
+input[type="checkbox"] {
+    display: none; /* Cache l'input checkbox */
+  }
+  
+  label.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--button-text-color);
+    background-color: var(--button-color);
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.333);
+    border-radius: var(--button-border-radius);
+    padding: 16px 24px 16px 28px;
+    transition: 0.2s;
+    box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
+    cursor: pointer;
+  }
+  
+  label.container .action {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+  }
+  
+  label.container .action span {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    transition: all 0.5s;
+  }
+  
+  label.container .action span.option-1 {
+    transform: translate(0px, 0%);
+    opacity: 1;
+  }
+  
+  input:checked + label.container .action span.option-1 {
+    transform: translate(0px, -100%);
+    opacity: 0;
+  }
+  
+  label.container .action span.option-2 {
+    transform: translate(0px, 100%);
+    opacity: 0;
+  }
+  
+  input:checked + label.container .action span.option-2 {
+    transform: translate(0px, 0%);
+    opacity: 1;
+  }
+  
+  input:checked + label.container {
+    background-color: var(--button-color-active);
+    color: var(--button-text-color-active);
+  }
+  
