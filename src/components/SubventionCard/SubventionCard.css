@@ -79,6 +79,13 @@
   }
   
   .card-details-display {
+    /* padding: 10px; */
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease, padding 0.3s ease;
+}
+
+.card-details-display.show {
+    height: auto;
     padding: 10px;
-  }
-  
+}

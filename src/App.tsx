@@ -183,14 +183,35 @@ function App() {
       <SubventionCardsContainer>
         <SubventionCard
           title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-          compatibility="70%"
+          compatibility="85%"
+          provider="Banque des territoires"
+          amount="200 000 €"
+          details="Mes détails"
+        />
+        <SubventionCard
+          title="Protéger"
+          compatibility="65%"
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
         />
         <SubventionCard
           title="Protéger et restaurer"
-          compatibility="70%"
+          compatibility="45%"
+          provider="Banque des territoires"
+          amount="200 000 €"
+          details="Mes détails"
+        />
+        <SubventionCard
+          title="Protéger et restaurer les milieux aquatiques ou humides"
+          compatibility="25%"
+          provider="Banque des territoires"
+          amount="200 000 €"
+          details="Mes détails"
+        />
+        <SubventionCard
+          title="Protéger et restaurer les milieux"
+          compatibility="5%"
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"

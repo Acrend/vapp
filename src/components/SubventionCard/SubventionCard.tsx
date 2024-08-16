@@ -1,5 +1,4 @@
-import React from 'react';
-import Button from '../ButtonDefault/ButtonDefault';
+import React, { useState, useRef, useEffect } from 'react';
 import Checkbox from '../CheckboxDefault/CheckboxDefault';
 import './SubventionCard.css';
 
@@ -12,6 +11,19 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, compatibility, provider, amount, details }) => {
+  const [showDetails, setShowDetails] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  const handleDetailsToggle = () => {
+    setShowDetails(prevState => !prevState);
+  };
+
+  useEffect(() => {
+    if (detailsRef.current) {
+      detailsRef.current.style.height = showDetails ? `${detailsRef.current.scrollHeight}px` : '0px';
+    }
+  }, [showDetails]);
+
   return (
     <div className="card">
       <div className="card-main-display">
@@ -24,15 +36,33 @@ const Card: React.FC<CardProps> = ({ title, compatibility, provider, amount, det
           <p className="p">{amount}</p>
         </div>
         <div className="card-button-container">
-          <Button label="Détail" />
-          <Checkbox
+          <Checkbox 
+            id={`toggle-switch-detail-${title.replace(/\s+/g, '-').toLowerCase()}`}
+            labelActive="Réduire" 
+            labelInactive="Détail" 
+            activeBackgroundColor="#7a7a7a"
+            inactiveBackgroundColor="#d6d6d6" 
+            activeTextColor="white"   
+            inactiveTextColor="black"
+            onClick={handleDetailsToggle}  
+            width="30%" // Spécifiez la largeur ici
+          />
+          <Checkbox 
             id={`toggle-switch-${title.replace(/\s+/g, '-').toLowerCase()}`}
             labelInactive="Ajouter l'aide à mon projet"
-            labelActive="Aide ajoutée à mon projet"
+            labelActive="Rétirer l'aide de mon projet"
+            activeBackgroundColor="#cf1d1d" 
+            inactiveBackgroundColor="#37de31" 
+            activeTextColor="white"   
+            inactiveTextColor="black" 
+            width="70%" // Spécifiez la largeur ici
           />
         </div>
       </div>
-      <div className="card-details-display">
+      <div 
+        className={`card-details-display ${showDetails ? 'show' : ''}`} 
+        ref={detailsRef}
+      >
         {details}
       </div>
     </div>
