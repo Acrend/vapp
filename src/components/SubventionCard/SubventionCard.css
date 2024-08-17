@@ -1,16 +1,39 @@
-
 .card {
-    width: 100%;
-    background: white;
-    border-radius: var(--card-border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
+  width: 100%;
+  background: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  overflow: visible; /* Assurez-vous que l'overflow est visible */
+  position: relative; /* Permet de positionner le tooltip correctement */
+}
+
+
+.card.highlight {
+  background-color: #e0f7fa; /* Couleur de fond significative */
+  border: 2px solid #00796b; /* Bordure colorée pour mettre en évidence la carte */
+  box-shadow: 0 8px 16px rgba(0, 121, 107, 0.4); /* Ombre plus prononcée */
+  transform: scale(1.02); /* Léger agrandissement pour attirer l'attention */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.selected-badge {
+  background-color: #00796b;
+  color: white;
+  padding: 4px 8px; /* Réduction de la taille du badge */
+  border-radius: 20px;
+  font-size: 15px; /* Réduction de la taille de la police */
+  font-weight: bold;
+  position: absolute;
+  top: 10px; /* Augmente la distance par rapport au haut */
+  right: 10px; /* Augmente la distance par rapport à la droite */
+  z-index: 10; /* Assure que le badge est au-dessus des autres éléments */
+}
+
+
   .card-main-display {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     border-radius: var(--card-border-radius);
@@ -18,7 +41,7 @@
   
   .card-header {
     width: 100%;
-    background: linear-gradient(45deg, #49e223, #8ee48b);
+    background: linear-gradient(45deg, #f83600, #f9d423);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,42 +57,54 @@
   }
   
   .subvention-title {
+    text-align: left;
     color: black;
     font-size: 24px;
+    display: flex;
+    align-items: center; /* Centre verticalement */
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2em;
-    max-height: 3.6em;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.3); /* Fond semi-transparent */
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); /* Lueur autour du texte */
     border-radius: 5px; /* Coins arrondis */
-  }
+    min-height: 90px; /* Assure une hauteur minimale pour un bon alignement */
+}
+
   
-  .subvention-compatibility {
-    color: rgb(255, 255, 255);
-    font-size: 24px;
-    margin-left: 20px;
-    white-space: nowrap;
-    background-color: rgba(0, 0, 0, 0.3); /* Fond semi-transparent */
-    padding: 5px 10px; /* Espace autour du texte */
-    border-radius: 5px; /* Coins arrondis */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Lueur autour du texte */
-  }
-  
-  .text {
+.subvention-compatibility {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-left: 20px;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.3); /* Fond semi-transparent */
+  padding: 5px 10px; /* Espace autour du texte */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Lueur autour du texte */
+  width: 55px;
+  height: 35px;
+}
+
+
+  .card-info-text{
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    text-align: left;
+    color:rgb(91, 94, 94);
   }
+  .card-details-text{
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+  
   
   .card-button-container {
     display: flex;

@@ -146,7 +146,11 @@ function App() {
           <p>Loading... {checkedCount}/{idList.length} checked</p>
         </div>
       )}
-
+      {!isLoading && (
+        <div className="summary">
+          <p>{highScoreCount} aides ont un score supérieur à 10.</p>
+        </div>
+      )}
       <div className="results-container">
         {subResults.map((result, index) => (
           <SubContainer
@@ -160,69 +164,60 @@ function App() {
           />
         ))}
       </div>
-
-      <div className="results-container">
-        <SubContainerDev
-          score={0}
-          sub_score_ratio={0.75} // Or any default ratio you'd like to test with
-          title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
-          sub_deadline="2024-12-08"
-          sub_start="2024-08-08"
-        />
-        <SubContainerDev
-          score={0}
-          sub_score_ratio={0.75} // Or any default ratio you'd like to test with
-          title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
-          sub_deadline="2024-12-08"
-          sub_start="2024-08-08"
-        />
-      </div>
-
       <SubventionCardsContainer>
         <SubventionCard
           title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
-          compatibility="85%"
+          compatibility={85}
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
         <SubventionCard
           title="Protéger"
-          compatibility="65%"
+          compatibility={65}
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
         <SubventionCard
           title="Protéger et restaurer"
-          compatibility="45%"
+          compatibility={45}
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
         <SubventionCard
           title="Protéger et restaurer les milieux aquatiques ou humides"
-          compatibility="25%"
+          compatibility={25}
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
         <SubventionCard
           title="Protéger et restaurer les milieux"
-          compatibility="5%"
+          compatibility={0}
           provider="Banque des territoires"
           amount="200 000 €"
           details="Mes détails"
+          sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
+          sub_deadline="2024-12-08"
+          sub_start="2024-08-08"
         />
       </SubventionCardsContainer>
 
-      {!isLoading && (
-        <div className="summary">
-          <p>{highScoreCount} aides ont un score supérieur à 10.</p>
-        </div>
-      )}
+
     </div>
   );
 }
