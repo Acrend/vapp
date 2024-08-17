@@ -3,9 +3,9 @@ import './App.css';
 import TextBoxSearchSub from './components/text_box_search_sub/text_box_search_sub';
 import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 import SubContainer from './components/sub_container/sub_container';
-import SubContainerDev from './components/sub_container_dev/sub_container_dev';
 import SubventionCardsContainer from './components/SubventionCardsContainer/SubventionCardsContainer';
 import SubventionCard from './components/SubventionCard/SubventionCard';
+import SearchEngineBox from './components/SearchEngineBox/SearchEngineBox';
 
 function LoadingSpinner() {
   return (
@@ -26,6 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [checkedCount, setCheckedCount] = useState<number>(0);
   const [highScoreCount, setHighScoreCount] = useState<number>(0);
+
 
   const fetchAnimal = async () => {
     try {
@@ -110,6 +111,9 @@ function App() {
       setIsLoading(false); // Réinitialiser l'état de chargement
     }
   };
+  const handleSearch = (value: string) => {
+    console.log('Search initiated with:', value);
+  };
 
   const handleError = (error: any, defaultMessage: string): void => {
     let errorMessage = defaultMessage;
@@ -137,6 +141,10 @@ function App() {
         <p>Request Count: {index}</p>
       </div>
 
+      {/* Section existante */}
+      <div className="app-container">
+
+      </div>
       <TextBoxSearchSub onInputChange={setInputData} />
       <FetchButton onClick={fetchInfo} label="Rechercher des aides" />
 
@@ -165,6 +173,7 @@ function App() {
         ))}
       </div>
       <SubventionCardsContainer>
+      <SearchEngineBox onInputChange={setInputData} />
         <SubventionCard
           title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
           compatibility={85}
@@ -179,7 +188,7 @@ function App() {
           title="Protéger"
           compatibility={65}
           provider="Banque des territoires"
-          amount="200 000 €"
+          amount="200 200 €"
           details="Mes détails"
           sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
           sub_deadline="2024-12-08"
@@ -189,7 +198,7 @@ function App() {
           title="Protéger et restaurer"
           compatibility={45}
           provider="Banque des territoires"
-          amount="200 000 €"
+          amount="200 200 €"
           details="Mes détails"
           sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
           sub_deadline="2024-12-08"
@@ -199,7 +208,7 @@ function App() {
           title="Protéger et restaurer les milieux aquatiques ou humides"
           compatibility={25}
           provider="Banque des territoires"
-          amount="200 000 €"
+          amount="200 200 €"
           details="Mes détails"
           sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
           sub_deadline="2024-12-08"
@@ -209,15 +218,13 @@ function App() {
           title="Protéger et restaurer les milieux"
           compatibility={0}
           provider="Banque des territoires"
-          amount="200 000 €"
+          amount="200 200 €"
           details="Mes détails"
           sub_at_link="https://aides-territoires.beta.gouv.fr/aides/37fb-proteger-et-restaurer-les-milieux-aquatiques-/"
           sub_deadline="2024-12-08"
           sub_start="2024-08-08"
         />
       </SubventionCardsContainer>
-
-
     </div>
   );
 }

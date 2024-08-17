@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0px;
+    padding: 10px;
+    border: none;
+    border-radius: var(--card-border-radius);
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 4em;
+    padding: 0.5em;
+    margin: 0px;
+    border: none;
+    border-radius: 8px;
+    resize: none; /* Assurez-vous que l'utilisateur ne peut pas redimensionner manuellement le textarea */
+    overflow-y: hidden; /* Défini initialement à hidden, ajusté dynamiquement */
+    text-align: left;
+    direction: ltr;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+textarea:focus {
+    outline: none; /* Supprime l'outline par défaut */
+    border:none;
+    box-shadow: none;
+}
+
+input[type="text"] {
+    width: 20em; /* 5em par unité, ajustez selon vos besoins */
+    height: 9em; /* 3em par unité */
+    padding: 0.5em;
+    margin: 20px;
+    border: none;
+}
+
+input[type="text"]:focus {
+    border:none;
+    box-shadow:none;
+}

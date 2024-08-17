@@ -10,6 +10,7 @@
 
 
 .card.highlight {
+  border-radius: 20px;
   background-color: #e0f7fa; /* Couleur de fond significative */
   border: 2px solid #00796b; /* Bordure colorée pour mettre en évidence la carte */
   box-shadow: 0 8px 16px rgba(0, 121, 107, 0.4); /* Ombre plus prononcée */
