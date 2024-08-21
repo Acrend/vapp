@@ -6,6 +6,7 @@ import SubContainer from './components/sub_container/sub_container';
 import SubventionCardsContainer from './components/SubventionCardsContainer/SubventionCardsContainer';
 import SubventionCard from './components/SubventionCard/SubventionCard';
 import SearchEngineBox from './components/SearchEngineBox/SearchEngineBox';
+import SearchEngineForms from './components/SearchEngineForms/SearchEngineForms';
 
 function LoadingSpinner() {
   return (
@@ -26,6 +27,7 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [checkedCount, setCheckedCount] = useState<number>(0);
   const [highScoreCount, setHighScoreCount] = useState<number>(0);
+  const fields = ["Champ 1", "Champ 2", "Champ 3", "Champ 4"]; // Exemple de champs pour FixedFields
 
 
   const fetchAnimal = async () => {
@@ -142,12 +144,9 @@ function App() {
       </div>
 
       {/* Section existante */}
-      <div className="app-container">
-
-      </div>
       <TextBoxSearchSub onInputChange={setInputData} />
       <FetchButton onClick={fetchInfo} label="Rechercher des aides" />
-
+      <SearchEngineForms />
       {isLoading && (
         <div className="loading-indicator">
           <LoadingSpinner />
@@ -172,8 +171,8 @@ function App() {
           />
         ))}
       </div>
+      
       <SubventionCardsContainer>
-      <SearchEngineBox onInputChange={setInputData} />
         <SubventionCard
           title="Protéger et restaurer les milieux aquatiques ou humides et leurs milieux connectés"
           compatibility={85}
