@@ -1,76 +1,48 @@
-.autocomplete-fields-container {
-  display: flex;
-  flex-direction: column;
+.autocomplete-container {
   position: relative;
-  padding: 0px;
-  margin: 0px;
-  max-width: 190px; /* Ajustement pour correspondre au design souhaité */
+  padding: 0;
+  width: 100%; /* Permet au champ de s'adapter à la largeur du conteneur parent */
+  max-width: 3500px; /* Limiter la largeur du champ pour qu'il ressemble à un champ de formulaire */
 }
 
-.inputGroup {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 1em 0 1em 0;
-  max-width: 190px;
-  position: relative;
-}
-
-.inputGroup input {
-  font-size: 100%;
-  padding: 0.8em;
-  outline: none;
-  border: 2px solid rgb(200, 200, 200);
-  background-color: transparent;
-  border-radius: 20px;
+.autocomplete-input {
   width: 100%;
+  padding: 0px 0px; /* Réduit le padding pour un format de champ de formulaire plus petit */
+  font-size: 14px; /* Taille de police plus petite pour un champ de formulaire */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: box-shadow 0.3s ease; /* Ajoute une transition pour l'effet d'ombre */
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset; /* Ombre légère par défaut */
 }
 
-.inputGroup label {
-  font-size: 100%;
-  position: absolute;
-  left: 0;
-  padding: 0.8em;
-  margin-left: 0.5em;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  color: rgb(100, 100, 100);
+.autocomplete-input:focus {
+  border-color: #007bff; /* Change la couleur de la bordure au focus */
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 8px 0px inset, 0 0 8px 2px rgba(0, 123, 255, 0.5); /* Accentue l'ombre */
 }
 
-.inputGroup :is(input:focus, input:valid)~label {
-  transform: translateY(-50%) scale(.9);
-  margin: 0em;
-  margin-left: 1.3em;
-  padding: 0.4em;
-  background-color: #e8e8e8;
-}
-
-.inputGroup :is(input:focus, input:valid) {
-  border-color: rgb(150, 150, 200);
-}
-
-.suggestions-list { 
+.suggestions-list {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 1000;
   background-color: white;
   border: 1px solid #ddd;
-  border-top: none; 
+  border-top: none; /* Évite une double bordure avec le champ de saisie */
   border-radius: 0 0 4px 4px;
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 8px;
   margin: 0;
   padding: 0;
-  list-style-type: none;
+  list-style: none;
+  z-index: 1000;
 }
 
 .suggestion-item {
-  padding: 10px;
+  padding: 8px 12px;
   font-size: 14px;
   color: #333;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
 .suggestion-item:hover {

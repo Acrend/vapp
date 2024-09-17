@@ -74,7 +74,6 @@ const Card: React.FC<CardProps> = ({
           {isHighlighted && <div className="selected-badge">Sélectionné</div>} {/* Badge de sélection */}
         </div>
         <div className="card-info-text">
-          <p className="h3">Porteur de l'aide : {provider}</p>
           <p className="p">Montant financable maximum : {amount}</p>
         </div>
         <div className="card-button-container">
@@ -107,9 +106,10 @@ const Card: React.FC<CardProps> = ({
         ref={detailsRef}
       >
         <div className="card-details-text">
-          <p>Lien aide territoire: <a href={sub_at_link} target="_blank" rel="noopener noreferrer">{sub_at_link}</a></p>
+          <p className="h3">Porteur de l'aide : {provider}</p>
           <p>Date d'ouverture : {sub_start}</p>
           <p>Date de clôture : {sub_deadline}</p>
+          <p>Lien aide territoire: <a href={sub_at_link} target="_blank" rel="noopener noreferrer">{sub_at_link}</a></p>
         </div>
       </div>
     </div>

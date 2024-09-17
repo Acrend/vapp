@@ -26,6 +26,7 @@ const SearchEngineForms: React.FC = () => {
   return (
     <div className="search-engine-forms-container">
       <AutoCompleteFields fields={fields} />
+      <AutoCompleteFields fields={fields} />
       <SearchEngineBox onInputChange={handleSearchInputChange} />
     </div>
   );

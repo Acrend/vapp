@@ -29,18 +29,15 @@ const AutoCompleteFields: React.FC<AutoCompleteFieldsProps> = ({ fields }) => {
   };
 
   return (
-    <div className="autocomplete-fields-container">
-      <div className="inputGroup">
-        <input
-          type="text"
-          id="autocomplete-input"
-          value={inputValue}
-          onChange={handleInputChange}
-          required
-          autoComplete="off"
-        />
-        <label htmlFor="autocomplete-input">Name</label>
-      </div>
+    <div className="autocomplete-container">
+      <input
+        type="text"
+        className="autocomplete-input"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Enter text..."
+        autoComplete="off"
+      />
       {suggestions.length > 0 && (
         <ul className="suggestions-list">
           {suggestions.map((suggestion, index) => (
