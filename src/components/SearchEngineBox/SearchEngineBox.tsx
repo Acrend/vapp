@@ -4,14 +4,11 @@ import Button from '../ButtonDefault/ButtonDefault';
 
 interface SearchEngineBoxProps {
   onInputChange: (value: string) => void;
+  onSearchButtonClick: () => void;
 }
 
-const handleButtonClick = () => {
-    console.log('Button clicked!');
-  };
-
-const SearchEngineBox: React.FC<SearchEngineBoxProps> = ({ onInputChange }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null); // Spécifiez le type correct pour le ref
+const SearchEngineBox: React.FC<SearchEngineBoxProps> = ({ onInputChange, onSearchButtonClick }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onInputChange(e.target.value);
@@ -21,21 +18,21 @@ const SearchEngineBox: React.FC<SearchEngineBoxProps> = ({ onInputChange }) => {
   const adjustHeight = () => {
     if (textareaRef.current) {
       const maxLines = 12;
-      const lineHeight = 20; // Estimez ou mesurez la hauteur de ligne réelle en pixels
-      textareaRef.current.style.height = 'inherit'; // Reset the height
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Adjust height
-  
+      const lineHeight = 20;
+      textareaRef.current.style.height = 'inherit';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+
       if (textareaRef.current.scrollHeight > lineHeight * maxLines) {
-        textareaRef.current.style.height = `${lineHeight * maxLines}px`; // Max height
-        textareaRef.current.style.overflowY = 'auto'; // Enable scrolling
+        textareaRef.current.style.height = `${lineHeight * maxLines}px`;
+        textareaRef.current.style.overflowY = 'auto';
       } else {
-        textareaRef.current.style.overflowY = 'hidden'; // Disable scrolling
+        textareaRef.current.style.overflowY = 'hidden';
       }
     }
   };
-  
+
   useEffect(() => {
-    adjustHeight(); // Adjust height on mount
+    adjustHeight();
   }, []);
 
   return (
@@ -46,13 +43,13 @@ const SearchEngineBox: React.FC<SearchEngineBoxProps> = ({ onInputChange }) => {
         placeholder="Merci de décrire votre projet ici"
         maxLength={2000}
       />
-    <Button
+      <Button
         label="Rechercher des aides"
-        onClick={handleButtonClick}
+        onClick={onSearchButtonClick}
         isActive={true}
-    />
+      />
     </div>
   );
 };
 
-export default SearchEngineBox;
+export default SearchEngineBox

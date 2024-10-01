@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import TextBoxSearchSub from './components/text_box_search_sub/text_box_search_sub';
-import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 import SubventionCardsContainer from './components/SubventionCardsContainer/SubventionCardsContainer';
 import SubventionCard from './components/SubventionCard/SubventionCard';
 import SearchEngineForms from './components/SearchEngineForms/SearchEngineForms';
+import FetchButton from './components/fetch_search_sub_button/fetch_search_sub_button';
 
 function LoadingSpinner() {
   return (
@@ -42,7 +41,7 @@ function App() {
 
   const fetchAnimal = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/animal/');
+      const response = await fetch('/api/animal/');
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.error || 'Server responded with an error!');
@@ -54,23 +53,24 @@ function App() {
     }
   };
 
-  const fetchInfo = async () => {
+  const fetchInfo = async (input: string) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/get-info/', {
+      setInputData(input);
+      const response = await fetch('/api/get-info/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_project_initial_description: inputData }),
+        body: JSON.stringify({ user_project_initial_description: input }),
       });
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send data');
       }
       setIdList(data.sub_id_list || []);
-      setSubResults([]); 
-      setHighScoreCount(0); 
-      fetchSubDetails(data.sub_id_list.slice(0, 4)); 
+      setSubResults([]);
+      setHighScoreCount(0);
+      fetchSubDetails(data.sub_id_list.slice(0, 20));
     } catch (error) {
       handleError(error, 'Error sending data');
     }
@@ -78,11 +78,11 @@ function App() {
 
   const fetchSubDetails = async (subIds: string[]) => {
     setIsLoading(true);
-    setCheckedCount(0); 
+    setCheckedCount(0);
 
     try {
       for (const subId of subIds) {
-        const response = await fetch('http://127.0.0.1:8000/api/sub-request/', {
+        const response = await fetch('/api/sub-request/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -117,12 +117,12 @@ function App() {
           return newResults.sort((a, b) => b.score - a.score);
         });
 
-        setCheckedCount((prevCount) => prevCount + 1); 
+        setCheckedCount((prevCount) => prevCount + 1);
       }
     } catch (error) {
       handleError(error, 'Error fetching sub details');
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
@@ -139,9 +139,8 @@ function App() {
         <p>Request Count: {index}</p>
       </div>
 
-      <TextBoxSearchSub onInputChange={setInputData} />
-      <FetchButton onClick={fetchInfo} label="Rechercher des aides" />
-      <SearchEngineForms />
+      {/* Remplacez TextBoxSearchSub et FetchButton par SearchEngineForms */}
+      <SearchEngineForms onSearch={fetchInfo} />
 
       {isLoading && (
         <div className="loading-indicator">
@@ -161,9 +160,9 @@ function App() {
             key={index}
             title={result.title}
             compatibility={result.sub_score_ratio}
-            provider="Banque des territoires" // Remplacez par la valeur réelle si disponible
-            amount="200 000 €" // Remplacez par la valeur réelle si disponible
-            details="Mes détails" // Remplacez par la valeur réelle si disponible
+            provider="Banque des territoires"
+            amount="200 000 €"
+            details="Mes détails"
             sub_at_link={result.sub_at_link}
             sub_deadline={result.sub_deadline}
             sub_start={result.sub_start}

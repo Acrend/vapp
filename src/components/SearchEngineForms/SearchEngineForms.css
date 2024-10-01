@@ -13,3 +13,8 @@
     overflow: visible; /* Assurez-vous que l'overflow est visible */
     position: relative; /* Permet au tooltip de dépasser */
   }
+
+.simple-text{
+  padding: 0px !important;
+  margin: 0px !important;
+}

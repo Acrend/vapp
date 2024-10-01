@@ -1,9 +1,10 @@
 .autocomplete-container {
   position: relative; /* Relative positioning to contain the absolute elements */
   width: 100%; /* Ensures the container takes the full width of its parent */
-  max-width: 500px; /* Optional: limit maximum width */
+  /* max-width: 500px; */
   max-height: 300px;
-  margin: 2rem;
+  margin: 0rem;
+  margin-bottom: 2rem;
   padding: 0!important;
   box-sizing: border-box; /* Include padding and border in the total width and height */
   align-items: left!important;
